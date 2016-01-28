@@ -1,0 +1,80 @@
+OpenType PS Font Installation
+
+- OpenType with PostScript flavor (OT/PS) consists of one file with OTF extension. 
+- OpenType fonts can be installed and used in any version of Windows and on Mac OS system.
+- OpenType fonts are based on Unicode multi-byte character encoding.
+- You may install OpenType fonts by the means of operating system or with the help of font management utilities.
+
+Installing OpenType fonts in common operating systems: 
+
+- - - - - -
+Windows 95/98/NT/ME
+
+In order to use OpenType PS fonts in Windows 95/98/NT/ME you must first install 
+Adobe Type Manager (ATM) 4.1.2 or newer, and then install fonts through ATM.
+You can download ATM Light free of charge from 
+http://www.adobe.com/products/atmlight/main.html 
+
+To install OT fonts in Windows 95/98/ME or Windows NT 4.0 using ATM Light 4:
+1. Choose Start > Programs > Adobe > Adobe Type Manager. If you install ATM 
+   in other Program Group, choose appropriate. 
+2. In ATM, click the Fonts tab.
+3. Choose Browse For Fonts from the Source pop-up menu. 
+4. Navigate to the folder that contains the fonts you want to install 
+   (Make sure you have unzipped the files). 
+5. Select the fonts you want to install. You can click to select one font, 
+   Ctrl-click to select several fonts, or Shift-click to select a contiguous 
+   group of fonts. 
+6. Press the Add button to install the fonts.
+7. Exit ATM. 
+After installation, you may need to restart an application or reselect the printer in the 
+application to make the new fonts appear in the font list.
+
+- - - - - -
+Windows 2000/XP
+
+Windows 2000 and Windows XP (Home and Professional) have built-in support for OpenType PS fonts. 
+
+1. Click on Start button and select Settings > Control Panel (or Open My 
+   Computer then Control Panel) 
+2. Open (Double-click) the Fonts folder. 
+3. Select File > Install New Font. 
+4. Use the Folders: and Drives: windows to move to the folder on your hard 
+   drive, a floppy disk, or CD where your new fonts are located. 
+  (Make sure you have unzipped the files).
+5. If you are installing fonts from a floppy or CD be sure the 'Copy fonts to folder' 
+   box is checked; otherwise, fonts may not be available to use if the floppy or CD is not 
+   in the drive at all times. 
+6. Highlight the font to install from the List of fonts window. To select more than one font, 
+   hold down the CTRL key and click each font. 
+7. Click OK.  
+After installation, you may need to restart an application or reselect the printer in the 
+application to make the new fonts appear in the font list.
+
+- - - - - -
+Mac OS 7.x-9.x
+
+For OpenType fonts with PostScript flavor (OT/PS) in all Mac OS except for 
+OS X, you need Adobe Type Manager (ATM) to make the fonts appear smooth when 
+viewed or printed at all sizes. 
+For OT/PS fonts you need ATM 4.6.2 or newer. You can download ATM Light free 
+from Adobe Web site: http://www.adobe.com/products/atmlight/main.html 
+
+- - - - - -
+Mac OS X
+Font installation on a Mac is a simple drag and drop operation. 
+
+Close any open applications before installing fonts. New fonts do not appear in 
+the font menu in some applications, if you install them while the application is open. 
+
+1. Open the folder with fonts to install.
+2. Select the font suitcases for the fonts you want to install. Make sure you are 
+   selecting the fonts themselves, not a folder containing the fonts. 
+3. Drag the fonts to the Fonts folder inside the Library folder on Mac OS X disk. 
+
+- - - - - -
+Read more about OpenType fonts installation on our website:
+http://www.paratype.com/help/finst/
+
+OpenType Overview
+http://www.paratype.com/help/formats/opentype.asp

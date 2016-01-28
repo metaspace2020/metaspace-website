@@ -1,0 +1,68 @@
+ParaType Inc. Electronic License Agreement
+Free Font Software
+
+IMPORTANT
+Please read the contents of this Licensing Agreement carefully before you install 
+font software of ParaType. As it is accepted in world practice software distribution 
+is carried out by licensing agreements concluded between the owner of the 
+copyrights and the end user. A licensing agreement provides approved rights to use 
+purchased software. First of all, it prohibited arbitrary copying of purchased 
+programs and documentation. 
+
+LICENSING AGREEMENT
+This document is a legal agreement between you, the end user, and ParaType Inc. 
+By using or installing delivered software, you are agreeing to become bound by 
+the terms and conditions of this Agreement. 
+
+GRANT OF LICENSE
+The owner of copyright grants you the right to use the font(s) on any number of 
+computers. 
+
+You may NOT rent, lease, sublicense, give, lend, or further distribute the Font Software, 
+except as expressly provided herein. 
+
+ADDITIONAL GRANT OF LICENSE
+If you have developed your own fonts on the basis of the given font, transformed the 
+given font, partially or completely, in any other format, you have a right to use 
+them in accordance with the restrictions indicated in current Agreement. You can 
+distribute fonts, letters and other characters developed by you only if you have 
+obtained a special Licensing Agreement signed by authorized representatives of the 
+Owners of Copyrights. 
+In case you violate the given Agreement ParaType Inc. have the right to stop acting 
+of the given Agreement in one-sided order. In this case you are obliged to do away 
+with all the copies of the font(s) and all the data you have developed using the given 
+Font Software. ParaType Inc. reserves the right to appeal to proper body in case of 
+violation of the Agreement in order to protect its interests on the basis of legislation 
+currently in force. 
+
+COPYRIGHTS
+The software products included in complete set of delivery are the property of 
+ParaType Inc., and are protected by the laws of United States, international 
+copyright agreement and other laws covering copyright protection for computer 
+software, hardware and other information technologies, active in the end user's 
+country, as well as by the terms and conditions set out in this Licensing Agreement, 
+which are binding on those who have entered into this Licensing Agreement and have, 
+thereby, accepted its terms and conditions. In accordance with the laws of the end 
+user's country ParaType Inc. maintains exclusive copyrights for the software. The 
+copying of any manuals or other materials included in this software package is 
+expressly prohibited. 
+
+NO WARRANTIES
+ParaType Inc. expressly disclaims any warranty for the font(s). The font(s) and any related 
+documentation is provided "as is" without warranty of any kind, either express or implied, 
+including, without limitation, the implied warranties or merchantability, fitness for a particular 
+purpose, or noninfringement. The entire risk arising out of use or performance of the font(s)
+remains with you. 
+
+NO LIABILITY FOR CONSEQUENTIAL DAMAGES
+In no event shall ParaType Inc. be liable for any damages whatsoever (including, without limitation, 
+damages for loss of business profits, business interruption, loss of business information, 
+or any other pecuniary loss) arising out of the use of or inability to use this product, even if 
+ParaType Inc. has been advised of the possibility of such damages. 
+
+If you have any questions concerning this Licensing Agreement, please e-mail to ParaType:
+fonts@paratype.com.
+
+ParaType Incorporated
+PO Box 3617
+Saratoga, CA 95070-1617 USA
