@@ -15,6 +15,16 @@
     <meta property="og:image" content="<?php echo 'http://'.$_SERVER['HTTP_HOST'].'/images/EMBL_open_graph.jpg'; ?>" />
   </head>
   <body>
+	<script>
+		(function(i,s,o,g,r,a,m){
+			i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+				(i[r].q=i[r].q||[]).push(arguments)
+			},i[r].l=1*new Date();a=s.createElement(o), m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+		ga('create', 'UA-73509518-1', 'auto');
+		ga('send', 'pageview');
+	</script>
+
     <div class="l-wrapper">
       <header class="b-header">
         <div class="l-inner"><a href="/" class="b-logo"><img src="/files/logo.png" alt="Metaspace" title="Metaspace" class="b-logo__img"></a>
