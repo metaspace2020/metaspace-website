@@ -5,7 +5,14 @@ class ThemeTopRight_Walker_Nav_Menu extends Walker_Nav_Menu
 {
 	function start_el(&$output, $item, $depth, $args)
 	{
-		$attributes = ' href="#'. str_replace(array('http://', $_SERVER['HTTP_HOST'], '/'), '', esc_attr( $item->url)) .'"';
+	    $url = parse_url(esc_attr( $item->url));
+        if(!empty($url['path'])){
+            $path = explode('/', $url['path']);
+            $path = $path['1'];
+            $attributes = ' href="#'. $path .'"';
+        } else {
+            $attributes = ' href="#'. str_replace(array('http://', $_SERVER['HTTP_HOST'], '/'), '', esc_attr( $item->url)) .'"';
+        }
                 $attributes .= ' class="b-nav__item js-scroll-link"';
 
 		$item_output = $args->before;
@@ -42,7 +49,7 @@ function send_contact_form_callback() {
             }
             else
             {
-                $res = array('error' => 1, 'message' => 'Oh, something went wrong. Don’t worry, all moleculas are safe. ');
+                $res = array('error' => 1, 'message' => 'Oh, something went wrong. Don’t worry, all metabolites are safe. ');
             }
         }
         

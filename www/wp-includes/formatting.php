@@ -216,7 +216,7 @@ function wptexturize( $text, $reset = false ) {
 
 	// Look for shortcodes and HTML elements.
 
-	preg_match_all( '@\[/?([^<>&/\[\]\x00-\x20]++)@', $text, $matches );
+	preg_match_all( '@\[/?([^<>&/\[\]\x00-\x20=]++)@', $text, $matches );
 	$tagnames = array_intersect( array_keys( $shortcode_tags ), $matches[1] );
 	$found_shortcodes = ! empty( $tagnames );
 	$shortcode_regex = $found_shortcodes ? _get_wptexturize_shortcode_regex( $tagnames ) : '';
@@ -233,6 +233,10 @@ function wptexturize( $text, $reset = false ) {
 				continue;
 			} else {
 				// This is an HTML element delimiter.
+
+				// Replace each & with &#038; unless it already looks like an entity.
+				$curl = preg_replace( '/&(?!#(?:\d+|x[a-f0-9]+);|[a-z1-4]{1,8};)/i', '&#038;', $curl );
+
 				_wptexturize_pushpop_element( $curl, $no_texturize_tags_stack, $no_texturize_tags );
 			}
 
@@ -1360,7 +1364,8 @@ function remove_accents( $string ) {
  * operating systems and special characters requiring special escaping
  * to manipulate at the command line. Replaces spaces and consecutive
  * dashes with a single dash. Trims period, dash and underscore from beginning
- * and end of filename.
+ * and end of filename. It is not guaranteed that this function will return a
+ * filename that is allowed to be uploaded.
  *
  * @since 2.1.0
  *
@@ -1384,6 +1389,14 @@ function sanitize_file_name( $filename ) {
 	$filename = str_replace( array( '%20', '+' ), '-', $filename );
 	$filename = preg_replace( '/[\r\n\t -]+/', '-', $filename );
 	$filename = trim( $filename, '.-_' );
+
+	if ( false === strpos( $filename, '.' ) ) {
+		$mime_types = wp_get_mime_types();
+		$filetype = wp_check_filetype( 'test.' . $filename, $mime_types );
+		if ( $filetype['ext'] === $filename ) {
+			$filename = 'unnamed-file.' . $filetype['ext'];
+		}
+	}
 
 	// Split the filename into a base and extension[s]
 	$parts = explode('.', $filename);
@@ -3892,14 +3905,20 @@ function sanitize_option( $option, $value ) {
  * @return The value with the callback applied to all non-arrays and non-objects inside it.
  */
 function map_deep( $value, $callback ) {
-	if ( is_array( $value ) || is_object( $value ) ) {
-		foreach ( $value as &$item ) {
-			$item = map_deep( $item, $callback );
+	if ( is_array( $value ) ) {
+		foreach ( $value as $index => $item ) {
+			$value[ $index ] = map_deep( $item, $callback );
 		}
-		return $value;
+	} elseif ( is_object( $value ) ) {
+		$object_vars = get_object_vars( $value );
+		foreach ( $object_vars as $property_name => $property_value ) {
+			$value->$property_name = map_deep( $property_value, $callback );
+		}
 	} else {
-		return call_user_func( $callback, $value );
+		$value = call_user_func( $callback, $value );
 	}
+
+	return $value;
 }
 
 /**
@@ -4524,7 +4543,7 @@ function print_emoji_detection_script() {
 		 *
 		 * @param string The emoji base URL.
 		 */
-		'baseUrl' => apply_filters( 'emoji_url', set_url_scheme( '//s.w.org/images/core/emoji/72x72/' ) ),
+		'baseUrl' => apply_filters( 'emoji_url', 'https://s.w.org/images/core/emoji/72x72/' ),
 
 		/**
 		 * Filter the extension of the emoji files.
@@ -4571,7 +4590,7 @@ function print_emoji_detection_script() {
 		?>
 		<script type="text/javascript">
 			window._wpemojiSettings = <?php echo wp_json_encode( $settings ); ?>;
-			!function(a,b,c){function d(a){var c=b.createElement("canvas"),d=c.getContext&&c.getContext("2d");return d&&d.fillText?(d.textBaseline="top",d.font="600 32px Arial","flag"===a?(d.fillText(String.fromCharCode(55356,56806,55356,56826),0,0),c.toDataURL().length>3e3):("simple"===a?d.fillText(String.fromCharCode(55357,56835),0,0):d.fillText(String.fromCharCode(55356,57135),0,0),0!==d.getImageData(16,16,1,1).data[0])):!1}function e(a){var c=b.createElement("script");c.src=a,c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var f,g;c.supports={simple:d("simple"),flag:d("flag"),unicode8:d("unicode8")},c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.simple&&c.supports.flag&&c.supports.unicode8||(g=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",g,!1),a.addEventListener("load",g,!1)):(a.attachEvent("onload",g),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),f=c.source||{},f.concatemoji?e(f.concatemoji):f.wpemoji&&f.twemoji&&(e(f.twemoji),e(f.wpemoji)))}(window,document,window._wpemojiSettings);
+			!function(a,b,c){function d(a){var c,d,e,f=b.createElement("canvas"),g=f.getContext&&f.getContext("2d"),h=String.fromCharCode;return g&&g.fillText?(g.textBaseline="top",g.font="600 32px Arial","flag"===a?(g.fillText(h(55356,56806,55356,56826),0,0),f.toDataURL().length>3e3):"diversity"===a?(g.fillText(h(55356,57221),0,0),c=g.getImageData(16,16,1,1).data,g.fillText(h(55356,57221,55356,57343),0,0),c=g.getImageData(16,16,1,1).data,e=c[0]+","+c[1]+","+c[2]+","+c[3],d!==e):("simple"===a?g.fillText(h(55357,56835),0,0):g.fillText(h(55356,57135),0,0),0!==g.getImageData(16,16,1,1).data[0])):!1}function e(a){var c=b.createElement("script");c.src=a,c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var f,g;c.supports={simple:d("simple"),flag:d("flag"),unicode8:d("unicode8"),diversity:d("diversity")},c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.simple&&c.supports.flag&&c.supports.unicode8&&c.supports.diversity||(g=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",g,!1),a.addEventListener("load",g,!1)):(a.attachEvent("onload",g),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),f=c.source||{},f.concatemoji?e(f.concatemoji):f.wpemoji&&f.twemoji&&(e(f.twemoji),e(f.wpemoji)))}(window,document,window._wpemojiSettings);
 		</script>
 		<?php
 	}
@@ -4636,7 +4655,7 @@ function wp_staticize_emoji( $text ) {
 	$text = wp_encode_emoji( $text );
 
 	/** This filter is documented in wp-includes/formatting.php */
-	$cdn_url = apply_filters( 'emoji_url', set_url_scheme( '//s.w.org/images/core/emoji/72x72/' ) );
+	$cdn_url = apply_filters( 'emoji_url', 'https://s.w.org/images/core/emoji/72x72/' );
 
 	/** This filter is documented in wp-includes/formatting.php */
 	$ext = apply_filters( 'emoji_ext', '.png' );
@@ -4792,3 +4811,19 @@ function url_shorten( $url, $length = 35 ) {
 	}
 	return $short_url;
 }
+
+/**
+ * 4.4.x hotfix for hidden configure links on admin dashboard.
+ *
+ * @ignore
+ */
+function _wp_441_dashboard_display_configure_links_css() { 
+	echo '<style type="text/css">
+		.postbox .button-link .edit-box { display: none; }
+		.wp-admin .edit-box { display: block; opacity: 0; }
+		.hndle:hover .edit-box, .edit-box:focus { opacity: 1; }
+		#dashboard-widgets h2 a { text-decoration: underline; }
+		#dashboard-widgets .hndle .postbox-title-action { float: right; line-height: 1.2; }
+	</style>';
+}
+add_action( 'admin_print_styles-index.php', '_wp_441_dashboard_display_configure_links_css' );

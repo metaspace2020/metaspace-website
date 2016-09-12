@@ -390,6 +390,9 @@ function register_taxonomy( $taxonomy, $object_type, $args = array() ) {
 		else
 			$args['query_var'] = sanitize_title_with_dashes( $args['query_var'] );
 		$wp->add_query_var( $args['query_var'] );
+	} else {
+		// Force query_var to false for non-public taxonomies.
+		$args['query_var'] = false;
 	}
 
 	if ( false !== $args['rewrite'] && ( is_admin() || '' != get_option( 'permalink_structure' ) ) ) {
@@ -673,7 +676,7 @@ function get_objects_in_term( $term_ids, $taxonomies, $args = array() ) {
 
 	$term_ids = array_map('intval', $term_ids );
 
-	$taxonomies = "'" . implode( "', '", $taxonomies ) . "'";
+	$taxonomies = "'" . implode( "', '", array_map( 'esc_sql', $taxonomies ) ) . "'";
 	$term_ids = "'" . implode( "', '", $term_ids ) . "'";
 
 	$object_ids = $wpdb->get_col("SELECT tr.object_id FROM $wpdb->term_relationships AS tr INNER JOIN $wpdb->term_taxonomy AS tt ON tr.term_taxonomy_id = tt.term_taxonomy_id WHERE tt.taxonomy IN ($taxonomies) AND tt.term_id IN ($term_ids) ORDER BY tr.object_id $order");
@@ -872,7 +875,7 @@ function get_term_by( $field, $value, $taxonomy = '', $output = OBJECT, $filter 
 		return $term;
 	}
 
-	$term = $wpdb->get_row( $wpdb->prepare( "SELECT t.*, tt.* FROM $wpdb->terms AS t INNER JOIN $wpdb->term_taxonomy AS tt ON t.term_id = tt.term_id WHERE $_field = %s $tax_clause LIMIT 1", $value ) );
+	$term = $wpdb->get_row( $wpdb->prepare( "SELECT t.*, tt.* FROM $wpdb->terms AS t INNER JOIN $wpdb->term_taxonomy AS tt ON t.term_id = tt.term_id WHERE $_field = %s", $value ) . " $tax_clause LIMIT 1" );
 	if ( ! $term )
 		return false;
 
@@ -1227,7 +1230,7 @@ function get_terms( $taxonomies, $args = '' ) {
 		$order = 'ASC';
 	}
 
-	$where = "tt.taxonomy IN ('" . implode("', '", $taxonomies) . "')";
+	$where = "tt.taxonomy IN ('" . implode("', '", array_map( 'esc_sql', $taxonomies ) ) . "')";
 
 	$exclude = $args['exclude'];
 	$exclude_tree = $args['exclude_tree'];
@@ -1353,12 +1356,14 @@ function get_terms( $taxonomies, $args = '' ) {
 
 	// Meta query support.
 	$join = '';
+	$distinct = '';
 	if ( ! empty( $args['meta_query'] ) ) {
 		$mquery = new WP_Meta_Query( $args['meta_query'] );
 		$mq_sql = $mquery->get_sql( 'term', 't', 'term_id' );
 
 		$join  .= $mq_sql['join'];
 		$where .= $mq_sql['where'];
+		$distinct .= "DISTINCT";
 	}
 
 	$selects = array();
@@ -1408,7 +1413,7 @@ function get_terms( $taxonomies, $args = '' ) {
 
 	$join .= " INNER JOIN $wpdb->term_taxonomy AS tt ON t.term_id = tt.term_id";
 
-	$pieces = array( 'fields', 'join', 'where', 'orderby', 'order', 'limits' );
+	$pieces = array( 'fields', 'join', 'where', 'distinct', 'orderby', 'order', 'limits' );
 
 	/**
 	 * Filter the terms query SQL clauses.
@@ -1424,11 +1429,12 @@ function get_terms( $taxonomies, $args = '' ) {
 	$fields = isset( $clauses[ 'fields' ] ) ? $clauses[ 'fields' ] : '';
 	$join = isset( $clauses[ 'join' ] ) ? $clauses[ 'join' ] : '';
 	$where = isset( $clauses[ 'where' ] ) ? $clauses[ 'where' ] : '';
+	$distinct = isset( $clauses[ 'distinct' ] ) ? $clauses[ 'distinct' ] : '';
 	$orderby = isset( $clauses[ 'orderby' ] ) ? $clauses[ 'orderby' ] : '';
 	$order = isset( $clauses[ 'order' ] ) ? $clauses[ 'order' ] : '';
 	$limits = isset( $clauses[ 'limits' ] ) ? $clauses[ 'limits' ] : '';
 
-	$query = "SELECT $fields FROM $wpdb->terms AS t $join WHERE $where $orderby $order $limits";
+	$query = "SELECT $distinct $fields FROM $wpdb->terms AS t $join WHERE $where $orderby $order $limits";
 
 	// $args can be anything. Only use the args defined in defaults to compute the key.
 	$key = md5( serialize( wp_array_slice_assoc( $args, array_keys( $defaults ) ) ) . serialize( $taxonomies ) . $query );
@@ -2353,7 +2359,7 @@ function wp_get_object_terms($object_ids, $taxonomies, $args = array()) {
 
 	$taxonomy_array = $taxonomies;
 	$object_id_array = $object_ids;
-	$taxonomies = "'" . implode("', '", $taxonomies) . "'";
+	$taxonomies = "'" . implode("', '", array_map( 'esc_sql', $taxonomies ) ) . "'";
 	$object_ids = implode(', ', $object_ids);
 
 	$select_this = '';
@@ -3604,7 +3610,7 @@ function update_object_term_cache($object_ids, $object_type) {
 
 	$terms = wp_get_object_terms( $ids, $taxonomies, array(
 		'fields' => 'all_with_object_id',
-		'orderby' => 'none',
+		'orderby' => 'name',
 		'update_term_meta_cache' => false,
 	) );
 
@@ -3640,7 +3646,7 @@ function update_object_term_cache($object_ids, $object_type) {
 function update_term_cache( $terms, $taxonomy = '' ) {
 	foreach ( (array) $terms as $term ) {
 		// Create a copy in case the array was passed by reference.
-		$_term = $term;
+		$_term = clone $term;
 
 		// Object ID should not be cached.
 		unset( $_term->object_id );

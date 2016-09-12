@@ -95,7 +95,7 @@
                 </div>
                 <div class="b-tabs__block js-tabs__block b-tab-block">
                   <div class="b-tab-block__left"><span class="b-tab-block__img-wrap"><img src="files/EMBL_EBI_logo.jpg" alt="" class="b-tab-block__img"></span>
-                    <footer class="b-tabs-block__footer"><a href="" class="b-tab-block__cmp gray-link"><span>European Bioinformatics Institute</span></a><span class="b-tabs-block__loc">Heidelberg, Germany</span></footer>
+                    <footer class="b-tabs-block__footer"><a href="" class="b-tab-block__cmp gray-link"><span>European Bioinformatics Institute</span></a><span class="b-tabs-block__loc">Hinxton, United Kingdom</span></footer>
                   </div>
                   <div class="b-tab-block__right">
                     <h3 class="b-tab-block__tlt">Christoph Steinbeck</h3>
@@ -106,7 +106,7 @@
                 </div>
                 <div class="b-tabs__block js-tabs__block b-tab-block">
                   <div class="b-tab-block__left"><span class="b-tab-block__img-wrap"><img src="files/logo_imperial_college_london1.png" alt="" class="b-tab-block__img"></span>
-                    <footer class="b-tabs-block__footer"><a href="" class="b-tab-block__cmp gray-link"><span>Imperial College London</span></a><span class="b-tabs-block__loc">Heidelberg, Germany</span></footer>
+                    <footer class="b-tabs-block__footer"><a href="" class="b-tab-block__cmp gray-link"><span>Imperial College London</span></a><span class="b-tabs-block__loc">London, United Kingdom</span></footer>
                   </div>
                   <div class="b-tab-block__right">
                     <h3 class="b-tab-block__tlt">Zoltan Takats, Kirill Veselkov</h3>
@@ -117,7 +117,7 @@
                 </div>
                 <div class="b-tabs__block js-tabs__block b-tab-block">
                   <div class="b-tab-block__left"><span class="b-tab-block__img-wrap"><img src="files/SCiLS_logo.png" alt="" class="b-tab-block__img"></span>
-                    <footer class="b-tabs-block__footer"><a href="" class="b-tab-block__cmp gray-link"><span>SCiLS</span></a><span class="b-tabs-block__loc">Heidelberg, Germany</span></footer>
+                    <footer class="b-tabs-block__footer"><a href="" class="b-tab-block__cmp gray-link"><span>SCiLS</span></a><span class="b-tabs-block__loc">Bremen, Germany</span></footer>
                   </div>
                   <div class="b-tab-block__right">
                     <h3 class="b-tab-block__tlt">Dennis Trede</h3>
@@ -128,7 +128,7 @@
                 </div>
                 <div class="b-tabs__block js-tabs__block b-tab-block">
                   <div class="b-tab-block__left"><span class="b-tab-block__img-wrap"><img src="files/ucsd-logo.jpg" alt="" class="b-tab-block__img"></span>
-                    <footer class="b-tabs-block__footer"><a href="" class="b-tab-block__cmp gray-link"><span>University of California San Diego</span></a><span class="b-tabs-block__loc">Heidelberg, Germany</span></footer>
+                    <footer class="b-tabs-block__footer"><a href="" class="b-tab-block__cmp gray-link"><span>University of California San Diego</span></a><span class="b-tabs-block__loc">La Jolla, CA, USA</span></footer>
                   </div>
                   <div class="b-tab-block__right">
                     <h3 class="b-tab-block__tlt">Pieter Dorrestein</h3>
@@ -139,7 +139,7 @@
                 </div>
                 <div class="b-tabs__block js-tabs__block b-tab-block">
                   <div class="b-tab-block__left"><span class="b-tab-block__img-wrap"><img src="files/University_of_Rennes.png" alt="" class="b-tab-block__img"></span>
-                    <footer class="b-tabs-block__footer"><a href="" class="b-tab-block__cmp gray-link"><span>University of Rennes 1</span></a><span class="b-tabs-block__loc">Heidelberg, Germany</span></footer>
+                    <footer class="b-tabs-block__footer"><a href="" class="b-tab-block__cmp gray-link"><span>University of Rennes 1</span></a><span class="b-tabs-block__loc">Rennes, France</span></footer>
                   </div>
                   <div class="b-tab-block__right">
                     <h3 class="b-tab-block__tlt">Charles Pineau</h3>
@@ -150,7 +150,7 @@
                 </div>
                 <div class="b-tabs__block js-tabs__block b-tab-block">
                   <div class="b-tab-block__left"><span class="b-tab-block__img-wrap b-tab-block__img-wrap_bg_gray"><img src="files/VIB_LOGO_rgb_neg_LARGE.png" alt="" class="b-tab-block__img"></span>
-                    <footer class="b-tabs-block__footer"><a href="" class="b-tab-block__cmp gray-link"><span>Vlaams Instituut voor Biotechnologie</span></a><span class="b-tabs-block__loc">Heidelberg, Germany</span></footer>
+                    <footer class="b-tabs-block__footer"><a href="" class="b-tab-block__cmp gray-link"><span>Vlaams Instituut voor Biotechnologie</span></a><span class="b-tabs-block__loc">Ghent, Belgium</span></footer>
                   </div>
                   <div class="b-tab-block__right">
                     <h3 class="b-tab-block__tlt">Lennart Martens</h3>
@@ -161,7 +161,7 @@
                 </div>
                 <div class="b-tabs__block js-tabs__block b-tab-block">
                   <div class="b-tab-block__left"><span class="b-tab-block__img-wrap"><img src="files/LOGO_TIFF.jpg" alt="" class="b-tab-block__img"></span>
-                    <footer class="b-tabs-block__footer"><a href="" class="b-tab-block__cmp gray-link"><span>European Research Services</span></a><span class="b-tabs-block__loc">Heidelberg, Germany</span></footer>
+                    <footer class="b-tabs-block__footer"><a href="" class="b-tab-block__cmp gray-link"><span>European Research Services</span></a><span class="b-tabs-block__loc">Muenster, Germany</span></footer>
                   </div>
                   <div class="b-tab-block__right">
                     <h3 class="b-tab-block__tlt">Oliver Panzer</h3>

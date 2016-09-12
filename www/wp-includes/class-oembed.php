@@ -60,8 +60,6 @@ class WP_oEmbed {
 			'#https?://(www\.)?soundcloud\.com/.*#i'              => array( 'http://soundcloud.com/oembed',                              true  ),
 			'#https?://(.+?\.)?slideshare\.net/.*#i'              => array( 'https://www.slideshare.net/api/oembed/2',                   true  ),
 			'#https?://(www\.)?instagr(\.am|am\.com)/p/.*#i'      => array( 'https://api.instagram.com/oembed',                          true  ),
-			'#https?://(www\.)?rdio\.com/.*#i'                    => array( 'http://www.rdio.com/api/oembed/',                           true  ),
-			'#https?://rd\.io/x/.*#i'                             => array( 'http://www.rdio.com/api/oembed/',                           true  ),
 			'#https?://(open|play)\.spotify\.com/.*#i'            => array( 'https://embed.spotify.com/oembed/',                         true  ),
 			'#https?://(.+\.)?imgur\.com/.*#i'                    => array( 'http://api.imgur.com/oembed',                               true  ),
 			'#https?://(www\.)?meetu(\.ps|p\.com)/.*#i'           => array( 'http://api.meetup.com/oembed',                              true  ),
@@ -124,8 +122,6 @@ class WP_oEmbed {
 		 * | SoundCloud   | soundcloud.com       |  Yes  | 3.5.0     |
 		 * | Dailymotion  | dai.ly               |  No   | 3.6.0     |
 		 * | Flickr       | flic.kr              |  Yes  | 3.6.0     |
-		 * | Rdio         | rdio.com             |  Yes  | 3.6.0     |
-		 * | Rdio         | rd.io                |  Yes  | 3.6.0     |
 		 * | Spotify      | spotify.com          |  Yes  | 3.6.0     |
 		 * | Imgur        | imgur.com            |  Yes  | 3.9.0     |
 		 * | Meetup.com   | meetup.com           |  Yes  | 3.9.0     |
@@ -156,6 +152,8 @@ class WP_oEmbed {
 		 * | Viddler      | viddler.com          |  Yes  | 2.9.0     | 4.0.0     |
 		 * | Revision3    | revision3.com        |  No   | 2.9.0     | 4.2.0     |
 		 * | Blip         | blip.tv              |  No   | 2.9.0     | 4.4.0     |
+		 * | Rdio         | rdio.com             |  Yes  | 3.6.0     | 4.4.1     |
+		 * | Rdio         | rd.io                |  Yes  | 3.6.0     | 4.4.1     |
 		 *
 		 * @see wp_oembed_add_provider()
 		 *
@@ -286,10 +284,32 @@ class WP_oEmbed {
 	 * @return false|string False on failure, otherwise the UNSANITIZED (and potentially unsafe) HTML that should be used to embed.
 	 */
 	public function get_html( $url, $args = '' ) {
+		/**
+		 * Filters the oEmbed result before any HTTP requests are made.
+		 *
+		 * This allows one to short-circuit the default logic, perhaps by
+		 * replacing it with a routine that is more optimal for your setup.
+		 *
+		 * Passing a non-null value to the filter will effectively short-circuit retrieval,
+		 * returning the passed value instead.
+		 *
+		 * @since 4.5.3
+		 *
+		 * @param null|string $result The UNSANITIZED (and potentially unsafe) HTML that should be used to embed. Default null.
+		 * @param string      $url    The URL to the content that should be attempted to be embedded.
+		 * @param array       $args   Optional. Arguments, usually passed from a shortcode. Default empty.
+		 */
+		$pre = apply_filters( 'pre_oembed_result', null, $url, $args );
+
+		if ( null !== $pre ) {
+			return $pre;
+		}
+
 		$provider = $this->get_provider( $url, $args );
 
-		if ( !$provider || false === $data = $this->fetch( $provider, $url, $args ) )
+		if ( ! $provider || false === $data = $this->fetch( $provider, $url, $args ) ) {
 			return false;
+		}
 
 		/**
 		 * Filter the HTML returned by the oEmbed provider.

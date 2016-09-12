@@ -3265,7 +3265,9 @@ input.b-input_is_count {
     height: 50px;
     content: '';
     position: absolute;
-    left: 50%;
+    left: 0;
+    right: 0;
+    margin: auto;
     bottom: 40px; }
   .b-screen_main .l-inner:after {
     background-image: url(../images/sprites.png);
@@ -3274,11 +3276,12 @@ input.b-input_is_count {
     height: 12px;
     position: absolute;
     content: '';
-    left: 51%;
+    left: 0;
+    right: 0;
+    margin: auto;
     bottom: 65px;
     -webkit-animation: slidingMouse .8s linear infinite;
-    animation: slidingMouse .8s linear infinite;
-    margin-left: -3px; }
+    animation: slidingMouse .8s linear infinite; }
 
 .b-screen__footer {
   position: absolute;
