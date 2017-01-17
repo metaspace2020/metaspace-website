@@ -10,7 +10,7 @@
     <meta name="description" content="<?php bloginfo( 'description' ); ?>">
     
     <meta property="og:title" content="​*METASPACE*​" />
-    <meta property="og:description" content="​Project of developing high-perfomance algorithms for high-resolution imaging mass spectrometry." />    
+    <meta property="og:description" content="​Project of developing high-performance algorithms for high-resolution imaging mass spectrometry." />    
     <meta property="og:url" content="<?php echo 'http://'.$_SERVER['HTTP_HOST']; ?>" />
     <meta property="og:image" content="<?php echo 'http://'.$_SERVER['HTTP_HOST'].'/images/EMBL_open_graph.jpg'; ?>" />
   </head>
