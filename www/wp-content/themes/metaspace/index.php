@@ -80,11 +80,20 @@
             <h2 id="consortium" class="js-title">Consortium</h2>
             <p class="lead">The project is funded by European Commission as a part<br> of&nbsp;<a href="" class="gray-link">Horizon 2020</a> program and unites 8 partners from 6 countries.</p>
             <div class="b-tabs js-tabs">
-    <div class="b-tabs__links js-tabs__links"><a href="" class="b-tabs__link js-tabs__link fake-link active">EMBL</a><a href="" class="b-tabs__link js-tabs__link fake-link">EBI — EMBL</a><a href="" class="b-tabs__link js-tabs__link fake-link">ICL</a><a href="" class="b-tabs__link js-tabs__link fake-link">SCiLS</a><a href="" class="b-tabs__link js-tabs__link fake-link">UCSD</a><a href="" class="b-tabs__link js-tabs__link fake-link">UR1</a><a href="" class="b-tabs__link js-tabs__link fake-link">VIB</a><a href="" class="b-tabs__link js-tabs__link fake-link">ERS</a></div>
+              <div class="b-tabs__links js-tabs__links">
+                <a href="" class="b-tabs__link js-tabs__link fake-link active">EMBL</a>
+                <a href="" class="b-tabs__link js-tabs__link fake-link">EBI — EMBL</a>
+                <a href="" class="b-tabs__link js-tabs__link fake-link">ICL</a>
+                <a href="" class="b-tabs__link js-tabs__link fake-link">SCiLS</a>
+                <a href="" class="b-tabs__link js-tabs__link fake-link">UCSD</a>
+                <a href="" class="b-tabs__link js-tabs__link fake-link">UR1</a>
+                <a href="" class="b-tabs__link js-tabs__link fake-link">VIB</a>
+                <a href="" class="b-tabs__link js-tabs__link fake-link">ERS</a>
+              </div>
               <div class="b-tabs__blocks js-tabs__blocks">
                 <div class="b-tabs__block js-tabs__block b-tab-block">
                   <div class="b-tab-block__left"><span class="b-tab-block__img-wrap"><img src="files/EMBL-logo.jpg" alt="" class="b-tab-block__img"></span>
-    <footer class="b-tabs-block__footer"><a href="https://www.embl.de" class="b-tab-block__cmp gray-link"><span>European Molecular Biology Laboratory</span></a><span class="b-tabs-block__loc">Heidelberg, Germany</span></footer>
+                    <footer class="b-tabs-block__footer"><a href="https://www.embl.de" class="b-tab-block__cmp gray-link"><span>European Molecular Biology Laboratory</span></a><span class="b-tabs-block__loc">Heidelberg, Germany</span></footer>
                   </div>
                   <div class="b-tab-block__right">
                     <h3 class="b-tab-block__tlt">Theodore Alexandrov's team</h3>
