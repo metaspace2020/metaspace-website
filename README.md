@@ -1,4 +1,4 @@
-Main website of the [METASPACE project](http://project.metaspace2020.eu)
+Main website of the [METASPACE project](http://project.metaspace2020.eu).
 
 ## Funding
 
